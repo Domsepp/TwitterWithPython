@@ -13,25 +13,25 @@ auth.secure = True
 api = tweepy.API(auth)
 
 def gettweets():
-    for tweet in tweepy.Cursor(api.search,q='@DonaldTrump',lang='en').items(10):
+    for tweet in tweepy.Cursor(api.search,q='search text or hashtag',lang='en').items(10):
         try:
-            #print ("Found tweet by: @"+tweet.user.screen_name)
+            #print ("Found tweet by: @"+tweet.user.screen_name)                         # print the user name tweeted this tweet
 
-            #tweet.retweet()
-            #print tweet
+            #tweet.retweet()                                                            # retweet the current tweet
+            #print tweet                                                                # print all data stored in 'tweet'
             print tweet.text
-            #tweet.favourite()
+            #tweet.favourite()                                                          # favourite the current tweet
             print "favourited"
-        except tweepy.TweepError as e:
+        except tweepy.TweepError as e:                                                  # error handling
             print e.reason
             time.sleep(0.1)
             continue
         except StopIteration:
             break
 
-#gettweets()
+gettweets()
 
-user = api.get_user(screen_name = '@Domsepp')
+user = api.get_user(screen_name = '@Domsepp')                                           # get data from user and store it in the "user" variable
 print user.name
 print user
 
